@@ -15,7 +15,10 @@ loop = asyncio.get_event_loop()
 
 
 async def send_telegram_message(chat_id: str, text: str):
-    await bot.send_message(chat_id=chat_id, text=text)
+    try:
+        await bot.send_message(chat_id=chat_id, text=text)
+    except Exception as e:
+        print(f"❌ Failed to send to {chat_id}: {e}")
 
 
 def send_news_to_telegram(news: dict, analysis: str):
